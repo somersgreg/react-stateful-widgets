@@ -44,10 +44,9 @@ const [spinnerOn, setSpinnerOn] = useState(true) // I FORGET WHAT setSpinnerOn D
 
   const toggleSpinner = () => {//OC
   /* STEP 4 */
-  setSpinnerOn(!spinnerOn) // I DONT UNDERSTAND WHY THIS WORKS :)
+  setSpinnerOn(!spinnerOn) // < I DONT UNDERSTAND WHY THIS WORKS :) > OOOOH WHATEVER IT ISNT NOT TRUE FALSE!
 // I THOUGHT THE ANSWER WAS spinnerON === "true" : "false"
-  console.log("Spinner -> spinnerOn", spinnerOn)
-
+  console.log("Spinner -> spinnerOn", spinnerOn) // GIVES OPPOSITE
   };
 
   return (
