@@ -73,7 +73,7 @@ export default function Counter() {//OC leads to index.html
     marginBottom: '0.3em',//OC
     color: count % 2 === 0 ? 'royalblue' : 'crimson' /* STEP 2 */
   };//OC
-
+  console.log("increment -> setCount", count)
   return (//OC cant comment between here and 83??
     <div className='widget-counter container'>
       <h2>Counter</h2>
@@ -88,5 +88,5 @@ export default function Counter() {//OC leads to index.html
     </div>//OC
   );//OC
 }//OC
-  {console.log("increment -> setCount", count)}
+
 // Number 0 is even {/* STEP 3 */} line 80

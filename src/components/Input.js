@@ -66,7 +66,7 @@ const [inputValue, setinputValue] = useState("");
       <h2>Input</h2>
       <div id='output' style={style}>{inputValue.toUpperCase()}</div> {/* STEP 3 I USED .toLocaleUpperCase BUT THAT IS FOR GEOGRAPHIC CONDITION*/}
       <div>
-        <input id='input' type='text' onChange={changeInput}  value={inputValue}/> {/* STEP 6 I DONT KNOW WHAT THIS IS DOING value={inputValue} */ }
+        <input id='input' type='text' onChange={changeInput}  value={inputValue}/> {/* STEP 6 I DONT KNOW WHAT THIS IS DOING value={inputValue} - REACT PASSES in an object MANY PROPERTIES TO DO WHAT IT DOES.  The format */ }
         <button id='resetInput' onClick={reset}>Reset</button>
       </div>
     </div>//OC

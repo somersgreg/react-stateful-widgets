@@ -14,7 +14,7 @@ Only one square (or none) can be active at any given point.
 Find comments below to help you along.
 */
 
-import React, {useState} from 'react';// COMBINED TWO IMPORTS
+import React, {useState} from 'react';// COMBINED TWO IMPORTS. also useState is a bundle {} React is a single thing in this case.
 // Use this variable ONLY to initialize a slice of state!
 const listOfSquareIds = ['sqA', 'sqB', 'sqC', 'sqD'];//OC
 
@@ -27,12 +27,14 @@ export default function Squares() {//OC
   const [activeSquare,setActiveSquare] = useState(null)
 
   const getClassName = id => {//OC
-  console.log("Squares -> id", id)
+  // console.log("Squares -> id", id)
     // This is NOT a click handler but a helper, used inside the JSX (see below).
     // It should return a string containing the class name of 'active', if the id passed
     // as the argument matches the active square in state, empty string otherwise.
     // Right-click and "inspect element" on the square to see its effect.
-    return id === activeSquare ? 'active' : '' // I DONT UNDERSTAND THIS. WHY THIS RETURN AND OTHER NOT?
+    if (id === activeSquare) return ' active'
+    return ''
+    // return id === activeSquare ? 'active' : '' // I DONT UNDERSTAND THIS. WHY THIS RETURN AND OTHER NOT?
   };//OC
 
   const markActive = id => {//OC  WHAT HERE IS GETTING CALLED ACTIVE? ID?
@@ -40,14 +42,19 @@ export default function Squares() {//OC
     // Set the id argument to become the active id in state
     // (unless it already is, in which case we should reset
     // the currently active square id back to initial state).
-    return id !== activeSquare ? setActiveSquare(id) : setActiveSquare(null) // I DONT KNOW WHY I CANT REVERSE. OH YOU CAN IF YOU !==
+    if (id === activeSquare) {
+      setActiveSquare(null)
+    } else {
+      setActiveSquare(id) // Ternary is used where functions are not run.  Otherwise use else as best practice.
+    }
+    // return id !== activeSquare ? setActiveSquare(id) : setActiveSquare(null) // I DONT KNOW WHY I CANT REVERSE. OH YOU CAN IF YOU !==
   };//OC
   // const makeGreen = id => {
   //   return id === activeSquare ? style='green' : style='white'
   // }
-  const style = {
-    backgroundColor: activeSquare === 'sqA' ? 'green' : "white", // I DONT KNOW HOW TO GET ID OR SOMETHING TO DETERMINE THIS
-  };
+  // const style = {
+  //   backgroundColor: activeSquare === 'sqA' ? 'green' : "white", // I DONT KNOW HOW TO GET ID OR SOMETHING TO DETERMINE THIS
+  // };
 
   return (//OC
     <div className='widget-squares container'>
@@ -60,7 +67,6 @@ export default function Squares() {//OC
           squares.map(id =>
             <div
               id={id}
-              style = {style}
               key={id}
               className={`square${getClassName(id)}`}
               onClick={() => markActive(id)}
