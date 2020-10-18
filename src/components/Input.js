@@ -35,7 +35,7 @@ STEP 6:
 */
 
 import React from 'react'; /* STEP 0 */
-import {useState} from "react";
+import {useState} from "react";// YOU CAN COMBINE THEM
 export default function Input() {//OC
   /* STEP 1 */
 const [inputValue, setinputValue] = useState("");
@@ -49,6 +49,7 @@ const [inputValue, setinputValue] = useState("");
     /* STEP 4 */
     setinputValue(value)//I DONT KNOW WHERE EVT OBJECT IS COMING FROM
   };//OC
+
   const reset = () => {//OC
     /* STEP 5 */
     setinputValue("")
@@ -63,9 +64,9 @@ const [inputValue, setinputValue] = useState("");
   return (//OC
     <div className='widget-input container'>
       <h2>Input</h2>
-      <div id='output' style={style}>{inputValue.toLocaleUpperCase()}</div> {/* STEP 3 */}
+      <div id='output' style={style}>{inputValue.toUpperCase()}</div> {/* STEP 3 I USED .toLocaleUpperCase BUT THAT IS FOR GEOGRAPHIC CONDITION*/}
       <div>
-        <input id='input' type='text' value={inputValue} onChange={changeInput} /> {/* STEP 6 I DONT KNOW WHAT THIS IS DOING value={inputValue} */ }
+        <input id='input' type='text' onChange={changeInput}  value={inputValue}/> {/* STEP 6 I DONT KNOW WHAT THIS IS DOING value={inputValue} */ }
         <button id='resetInput' onClick={reset}>Reset</button>
       </div>
     </div>//OC

@@ -56,12 +56,13 @@ export default function Counter() {//OC leads to index.html
   const increment = () => {//original code(OC)
     /* STEP 4 */
     setCount(count+1)//So same as normal but use setCount and this only makes +1 not count=count+1?
-    console.log("increment -> setCount", count)
-  };//OC
+  };//OC  THIS IS STORING THE DATA IN setCount NOT CHANGING count
+
   const decrement = () => {//OC
     /* STEP 5 */
     setCount(count > 0 ? count - 1 : 0) // spaces needed?
   };//OC
+
   const reset = () => {//OC
     /* STEP 6 */
     setCount(0)// rememeber the parenthesis
@@ -70,7 +71,7 @@ export default function Counter() {//OC leads to index.html
   const style = {//OC
     fontSize: '1.5em',//OC
     marginBottom: '0.3em',//OC
-    color: count % 2 === 0 ? 'royalblue' : 'hotpink' /* STEP 2 */
+    color: count % 2 === 0 ? 'royalblue' : 'crimson' /* STEP 2 */
   };//OC
 
   return (//OC cant comment between here and 83??
@@ -87,5 +88,5 @@ export default function Counter() {//OC leads to index.html
     </div>//OC
   );//OC
 }//OC
-
+  {console.log("increment -> setCount", count)}
 // Number 0 is even {/* STEP 3 */} line 80
