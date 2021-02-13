@@ -14,41 +14,57 @@ Only one square (or none) can be active at any given point.
 Find comments below to help you along.
 */
 
-import React from 'react';
-
+import React, {useState} from 'react';// COMBINED TWO IMPORTS. also useState is a bundle {} React is a single thing in this case.
 // Use this variable ONLY to initialize a slice of state!
-const listOfSquareIds = ['sqA', 'sqB', 'sqC', 'sqD'];
+const listOfSquareIds = ['sqA', 'sqB', 'sqC', 'sqD'];//OC
 
-export default function Squares() {
+export default function Squares() {//OC
   // Use the state hook twice, as we need two slices of state: 'squares' and
   // 'activeSquare'. One holds the _array_ of square ids, and the other keeps track
   // of the currently active square. On page load there's no active square,
   // so the value of 'activeSquare' should be null.
+  const [squares, setSquares] = useState(listOfSquareIds)
+  const [activeSquare,setActiveSquare] = useState(null)
 
-  const getClassName = id => {
+  const getClassName = id => {//OC
+  // console.log("Squares -> id", id)
     // This is NOT a click handler but a helper, used inside the JSX (see below).
     // It should return a string containing the class name of 'active', if the id passed
     // as the argument matches the active square in state, empty string otherwise.
     // Right-click and "inspect element" on the square to see its effect.
+    if (id === activeSquare) return ' active'
     return ''
-  };
+    // return id === activeSquare ? 'active' : '' // I DONT UNDERSTAND THIS. WHY THIS RETURN AND OTHER NOT?
+  };//OC
 
-  const markActive = id => {
+  const markActive = id => {//OC  WHAT HERE IS GETTING CALLED ACTIVE? ID?
     // This is a helper used inside an _inlined_ click handler (see below).
     // Set the id argument to become the active id in state
     // (unless it already is, in which case we should reset
     // the currently active square id back to initial state).
-  };
+    if (id === activeSquare) {
+      setActiveSquare(null)
+    } else {
+      setActiveSquare(id) // Ternary is used where functions are not run.  Otherwise use else as best practice.
+    }
+    // return id !== activeSquare ? setActiveSquare(id) : setActiveSquare(null) // I DONT KNOW WHY I CANT REVERSE. OH YOU CAN IF YOU !==
+  };//OC
+  // const makeGreen = id => {
+  //   return id === activeSquare ? style='green' : style='white'
+  // }
+  // const style = {
+  //   backgroundColor: activeSquare === 'sqA' ? 'green' : "white", // I DONT KNOW HOW TO GET ID OR SOMETHING TO DETERMINE THIS
+  // };
 
-  return (
+  return (//OC
     <div className='widget-squares container'>
       <h2>Squares</h2>
       <div className='squares'>
         {
           // Nasty bug! We should map over a slice of state, instead of 'listOfSquareIds'.
           // We might say: "it works, though!" But if the list of squares is not state,
-          // we could never add squares, change squares or remove squares in the future. Fix!
-          listOfSquareIds.map(id =>
+          // we could never add squares, change squares or remove squares in the future. Fix! - Done
+          squares.map(id =>
             <div
               id={id}
               key={id}

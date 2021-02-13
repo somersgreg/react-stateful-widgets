@@ -47,37 +47,46 @@ STEP 6:
 */
 
 import React from 'react'; /* STEP 0 */
+import {useState} from "react";//importing the state hook?
 
-export default function Counter() {
+export default function Counter() {//OC leads to index.html
   /* STEP 1 */
+  const [count, setCount] = useState(0);//https://reactjs.org/docs/hooks-state.html
 
-  const increment = () => {
+  const increment = () => {//original code(OC)
     /* STEP 4 */
-  };
-  const decrement = () => {
+    setCount(count+1)//So same as normal but use setCount and this only makes +1 not count=count+1?
+  };//OC  THIS IS STORING THE DATA IN setCount NOT CHANGING count
+
+  const decrement = () => {//OC
     /* STEP 5 */
-  };
-  const reset = () => {
+    setCount(count > 0 ? count - 1 : 0) // spaces needed?
+  };//OC
+
+  const reset = () => {//OC
     /* STEP 6 */
-  };
+    setCount(0)// rememeber the parenthesis
+  };//OC
 
-  const style = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
-  };
-
-  return (
+  const style = {//OC
+    fontSize: '1.5em',//OC
+    marginBottom: '0.3em',//OC
+    color: count % 2 === 0 ? 'royalblue' : 'crimson' /* STEP 2 */
+  };//OC
+  console.log("increment -> setCount", count)
+  return (//OC cant comment between here and 83??
     <div className='widget-counter container'>
       <h2>Counter</h2>
       <div id='count' style={style}>
-        Number 0 is even {/* STEP 3 */}
+        Number {count === 0 ? 'zero' : count} is {count % 2 === 0 ? 'even.' : 'odd.'}
       </div>
       <div>
         <button id='increment' onClick={increment}>Increment</button>
         <button id='decrement' onClick={decrement}>Decrement</button>
         <button id='resetCount' onClick={reset}>Reset</button>
       </div>
-    </div>
-  );
-}
+    </div>//OC
+  );//OC
+}//OC
+
+// Number 0 is even {/* STEP 3 */} line 80

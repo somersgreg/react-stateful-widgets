@@ -21,13 +21,13 @@ STEP 2:
   Make the color of the text be crimson if the length of 'inputValue' goes over ten.
 
 STEP 3:
-  Interpolate the value of the input inside this <div />. How can we make it show in ALL CAPS?
+  Interpolate the value of the input inside this <div />. How can we make it show in ALL CAPS? // INTERPOLATE??
 
 STEP 4:
-  Set the value of the input -found inside the event object- into state.
+  Set the value of the input -found inside the event object- into state.  //WHAT DOES THIS MEAN - EVENT OBJECT?
 
 STEP 5:
-  Set the input value in state to be empty string. The reset still won't work, though! See the next step.
+  Set the input value in state to be empty string. The reset still won't work, though! See the next step. //STATE??
 
 STEP 6:
   For the input to reset correctly, it needs to "drink" its value from state!
@@ -35,35 +35,40 @@ STEP 6:
 */
 
 import React from 'react'; /* STEP 0 */
-
-export default function Input() {
+import {useState} from "react";// YOU CAN COMBINE THEM
+export default function Input() {//OC
   /* STEP 1 */
-
-  const changeInput = evt => {
-    // When the input changes, its whole value can be found inside the event object.
+const [inputValue, setinputValue] = useState("");
+  const changeInput = evt => {//OC
+    // When the input changes, its whole value can be found inside the event object.  // EVENT OBJECT??
     // Log out the synthetic event object 'evt' and see for yourself.
-    const { value } = evt.target;
-
+    const { value } = evt.target;//OC
+    console.log("Input -> evt.target", evt.target)
+    // console.log("Input -> value", value) // THE LETTER
+    // console.log("Input -> evt", evt) // LOTS OF STUFF
     /* STEP 4 */
-  };
-  const reset = () => {
+    setinputValue(value)//I DONT KNOW WHERE EVT OBJECT IS COMING FROM
+  };//OC
+
+  const reset = () => {//OC
     /* STEP 5 */
-  };
+    setinputValue("")
+  };//OC
 
-  const style = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
-  };
+  const style = {//OC
+    fontSize: '1.5em',//OC
+    marginBottom: '0.3em',//OC
+    color: inputValue.length > 10 ? 'hotpink':'royalblue', /* STEP 2 */
+  };//OC
 
-  return (
+  return (//OC
     <div className='widget-input container'>
       <h2>Input</h2>
-      <div id='output' style={style}></div> {/* STEP 3 */}
+      <div id='output' style={style}>{inputValue.toUpperCase()}</div> {/* STEP 3 I USED .toLocaleUpperCase BUT THAT IS FOR GEOGRAPHIC CONDITION*/}
       <div>
-        <input id='input' type='text' onChange={changeInput} /> {/* STEP 6 */}
+        <input id='input' type='text' onChange={changeInput}  value={inputValue}/> {/* STEP 6 I DONT KNOW WHAT THIS IS DOING value={inputValue} - REACT PASSES in an object MANY PROPERTIES TO DO WHAT IT DOES.  The format */ }
         <button id='resetInput' onClick={reset}>Reset</button>
       </div>
-    </div>
-  );
-}
+    </div>//OC
+  );//OC
+}//OC
